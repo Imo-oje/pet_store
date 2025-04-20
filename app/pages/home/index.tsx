@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <>
       <Navbar />
-      <div className="w-50 h-80 bg-secondary rounded-4xl fixed -top-40 left-0 right-0 rotate-100 mx-auto"></div>
+
       <section className="bg-hero-background m-aut0 text-primary h-dvh flex flex-col justify-center items-center gap-12">
         <div className="container w-[95%] md:w-[80%] flex gap-12 flex-col lg:flex-row justify-between items-center">
           <div className="md:w-1/2">
@@ -51,11 +51,22 @@ const HomePage = () => {
             {/* Image */}
             <img
               src={puppies}
-              alt="Smiling woman holding a dog"
+              alt="Five cute little puppies"
               className="relative z-10 w-full h-auto"
             />
           </div>
-          <img src={womanAndDog} alt="" className="hidden lg:block" />
+          <div className="relative hidden lg:flex justify-start w-[60%]">
+            {/* Background Boxes */}
+            <div className="w-[400px] h-[60vh] absolute -bottom-0 rounded-4xl rotate-8 bg-primary" />
+            <div className="w-[400px] h-[70vh] absolute -bottom-0 rounded-4xl rotate-12 bg-secondary left-28" />
+
+            {/* Image with no extra space */}
+            <img
+              src={womanAndDog}
+              alt="Smiling woman holding a dog"
+              className=" relative z-10 m-0 p-0"
+            />
+          </div>
         </div>
       </section>
       <section className="text-red-500">

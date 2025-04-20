@@ -13,55 +13,50 @@ import {
   SheetTitle,
   SheetDescription,
 } from "./ui/sheet";
+import { Link } from "react-router";
 
 const Navbar = () => {
   return (
     <>
-      <header className="absolute left-0 right-0 z-1  py-4 w-[95%] mx-auto">
+      <header className="absolute left-0 right-0 z-10  py-4 w-[95%] md:w-[80%] mx-auto">
         <nav className="flex justify-between items-center bg-transparent">
           <Sheet>
-            <SheetTrigger asChild>
+            <SheetTrigger asChild className="md:hidden">
               <Menu className="text-black cursor-pointer" size={30} />
             </SheetTrigger>
-            <SheetContent side="left">
-              <SheetHeader>
-                <SheetTitle>Edit profile</SheetTitle>
-                <SheetDescription>
-                  Make changes to your profile here. Click save when you're
-                  done.
-                </SheetDescription>
-              </SheetHeader>
-              <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="name" className="text-right">
-                    Name
-                  </Label>
-                  <Input
-                    id="name"
-                    value="Pedro Duarte"
-                    className="col-span-3"
-                  />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="username" className="text-right">
-                    Username
-                  </Label>
-                  <Input
-                    id="username"
-                    value="@peduarte"
-                    className="col-span-3"
-                  />
-                </div>
-              </div>
-              <SheetFooter>
-                <SheetClose asChild>
-                  <Button type="submit">Save changes</Button>
-                </SheetClose>
-              </SheetFooter>
+            <SheetContent
+              side="left"
+              className=" bg-primary flex justify-center"
+            >
+              <ul className="p-4 max-w-fit mr-auto ml-auto flex flex-col gap-8 justify-center items-center">
+                {navLinks.map((link) => (
+                  <li
+                    key={link.path}
+                    className="text-white text-16 font-700 hover:underline"
+                  >
+                    <Link to={link.path}>{link.name}</Link>
+                  </li>
+                ))}
+              </ul>
             </SheetContent>
           </Sheet>
-          <img src={logo} alt="Logo" />
-          <Search className="text-black cursor-pointer" size={30} />
+
+          <div className="relative border-2 border-primary">
+            <div className="w-70 aspect-square bg-secondary rounded-4xl absolute -top-50 rotate-20 -left-20"></div>
+            <img src={logo} alt="Logo" className="relative" />
+          </div>
+
+          <ul className="hidden md:flex space-x-8 items-center flex-1 px-28 ">
+            {navLinks.map((link) => (
+              <li key={link.path} className="text-primary text-16 font-700">
+                <Link to={link.path}>{link.name}</Link>
+              </li>
+            ))}
+          </ul>
+          <Search className="text-black cursor-pointer md:hidden" size={30} />
+          <Button className="rounded-2xl hover:bg-transparent hover:border hover:text-primary cursor-pointer hidden md:block">
+            Join the community
+          </Button>
         </nav>
       </header>
     </>
@@ -69,3 +64,22 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+const navLinks = [
+  {
+    name: "Home",
+    path: "/",
+  },
+  {
+    name: "Category",
+    path: "/category",
+  },
+  {
+    name: "About",
+    path: "/about",
+  },
+  {
+    name: "Contact",
+    path: "/contact",
+  },
+];
